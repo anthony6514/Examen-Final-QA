@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}{{ entrega.codigo }}{% endblock %}
+
+{% block content %}
+<div class="container-fluid text-center">
+    <h1>Entrega: {{ entrega.codigo }}</h1>
+
+    <div class="row justify-content-evenly">
+        <div class="col-4 text-start">
+            <h3>Camión: {{ entrega.camion }}</h3>
+            <h3>Destino: {{ entrega.destino }}</h3>
+            <h3>Fecha: {{ entrega.fecha }}</h3>
+            <h3>Estado: {{ entrega.get_estado_display }}</h3>
+
+            <a class="btn btn-success" href="{% url 'entrega_update' entrega.id %}" role="button">
+                Editar Entrega
+            </a>
+            <a class="btn btn-danger" href="{% url 'entrega_delete' entrega.id %}" role="button">
+                Eliminar Entrega
+            </a>
+            <a class="btn btn-primary" href="{% url 'entrega_list' %}" role="button">
+                Regresar a la lista
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

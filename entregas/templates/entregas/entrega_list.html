@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Entregas Nestlé{% endblock %}
+
+{% block content %}
+<div class="container-fluid text-center">
+    <h1>Entregas Nestlé</h1>
+
+    <a class="btn btn-success m-3" href="{% url 'entrega_create' %}">
+        Nueva Entrega
+    </a>
+
+    <table class="table table-striped mt-3 text-start">
+        <thead class="table-dark">
+            <tr>
+                <th>Código</th>
+                <th>Camión</th>
+                <th>Destino</th>
+                <th>Fecha</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entrega in entregas %}
+            <tr>
+                <td>{{ entrega.codigo }}</td>
+                <td>{{ entrega.camion }}</td>
+                <td>{{ entrega.destino }}</td>
+                <td>{{ entrega.fecha }}</td>
+                <td>{{ entrega.get_estado_display }}</td>
+                <td>
+                    <a href="{% url 'entrega_detail' entrega.id %}" class="btn btn-primary btn-sm">Ver</a>
+                    <a href="{% url 'entrega_update' entrega.id %}" class="btn btn-success btn-sm">Editar</a>
+                    <a href="{% url 'entrega_delete' entrega.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
